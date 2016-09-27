@@ -4,8 +4,6 @@
 		<meta charset="utf-8">
 		<title>D3 - Data Driven Documents</title>
 		
-		<script src="https://d3js.org/d3.v3.min.js"></script>
-		
 		<style type="text/css">
 			body {
 				padding-top: 50px;
@@ -18,22 +16,54 @@
 				height: 75px;
 				margin-right: 2px;
 				background-color: teal;
+				vertical-align: bottom;
+			}
+			
+			.chart2 div {
+			  font: 10px sans-serif;
+			  background-color: steelblue;
+			  text-align: right;
+			  padding: 3px;
+			  margin: 1px;
+			  color: white;
 			}
 		</style>
 	</head>
 
 	<body>
+		<div class="chart1"></div>
+		
+		<div class="chart2"></div>
+		
+		<script src="https://d3js.org/d3.v3.min.js"></script>
+
 		<script type="text/javascript">
 			var dataset = [5, 10, 15, 20, 25];
 			
-			d3.select('body').selectAll('div')
-				.data(dataset)
+			d3.select('.chart1')
+				.selectAll('div')
+					.data(dataset)
 				.enter()
-				.append('div')
-				.attr('class', 'bar')
-				.style('height', function(d){
-					return d * 5 + "px";
-				});
+					.append('div')
+					.attr('class', 'bar')
+					.style('height', function(d){
+						return d * 5 + "px";
+					})
+					.text(function(d) {
+						return d;
+					});
+			
+			d3.select('.chart2')
+				.selectAll('div')
+					.data(dataset)
+				.enter()
+					.append('div')
+					.style('width', function(d) {
+						return d * 10 + "px";
+					})
+					.text(function(d) {
+						return d;
+					});
 		</script>
 	</body>
 </html>
